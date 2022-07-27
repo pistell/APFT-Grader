@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>APFT Grading App</title>
+  <script id="facebook-jssdk" src="//connect.facebook.net/en_GB/all.js#xfbml=1&amp;appId=671861979510602&amp;version=v2.0"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="description" content="Online APFT (Army Physical Fitness Test) Calculator and Grading Application">
+  <meta name="keywords" content="APFT, Army Physical Fitness Test, Calculator, Grader, Scorer, APFT Calculator">
+  <meta name="author" content="">
+  <meta name="google-site-verification" content="-NwfvfwGlHCupX_WnAfbgswLp3GruJVglMhVlS4Qn2M" />
+<meta name="google-site-verification" content="eREof7uSD3FejbdcBIWiDptDUOeV7Q5v7TXyRtkmA4s" />
+	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+	<!--script src="js/less-1.3.3.min.js"></script-->
+	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,900' rel='stylesheet' type='text/css'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+	<link href="css/style.css" rel="stylesheet">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+  <![endif]-->
+
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="icon" sizes="16x16 32x32 64x64" href="img/favicon.ico">
+	<link rel="icon" type="image/png" sizes="196x196" href="img/favicon-196.png">
+	<link rel="icon" type="image/png" sizes="160x160" href="img/favicon-160.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96.png">
+	<link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="img/favicon-152.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="img/favicon-144.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="img/favicon-120.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/favicon-114.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/favicon-76.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/favicon-72.png">
+	<link rel="apple-touch-icon" href="img/favicon-57.png">
+	<meta name="msapplication-TileColor" content="#FFFFFF">
+	<meta name="msapplication-TileImage" content="img/favicon-144.png">
+	<meta name="msapplication-config" content="img/browserconfig.xml">
+
+	<meta property='og:title' content='APFT Grader App'/>
+	<meta property='og:image' content='http://apftgrader.com/img/site.png'/>
+	<meta property='og:description' content='Input your Army Physical Fitness Test scores and get your grade with a filled out DA Form'/>
+	<meta property='og:url' content='http://apftgrader.com' />
+
+
+
+</head>
+
+<body>
+
+	<header class="row clearfix">
+
+		<nav class="navbar navbar-fixed-top" role="navigation">
+		    <div class="navbar-header">
+		    	<!--
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation">
+		        <span class="sr-only">Toggle navigation</span>
+		        <p>MENU</p>
+		      </button>
+		  		-->
+		      <a class="navbar-brand" href="#"><img src="img/apft-logo2.png" alt="APFT Calculator" height="30" width="30"> APFTgrader.com</a>
+		    </div>
+				<!--
+		    <div class="collapse navbar-collapse" id="main-navigation">
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="/">HOME</a></li>
+		      </ul>
+		    </div>
+		-->
+		</nav>
+
+	</header>
+	<div class="row clearfix">
+
+
+		<form class="apft-class-form" id="apft-events">
+
+			<div class="row" style="padding:0px;">
+				<div class="col-xs-6 card-title">
+					GENDER
+				</div>
+				<div class="col-xs-6 card-title">
+					AGE
+				</div>
+			</div>
+			<div class="row clearfix" style="padding:0px;font-size:0px;">
+				<div class="col-xs-3 col-sm-3 input-field">
+					<label class="lbl-gender male">
+						<input type="radio" class="radio" name="x" value="male" id="male"/>
+					    <div></div>
+					</label>
+				</div>
+				<div class="col-xs-3 col-sm-3 input-field">
+					<label class="lbl-gender female">
+					    <input type="radio" class="radio" name="x" value="female" id="female"/>
+					    <div></div>
+					</label>
+				</div>
+				<div class="col-xs-6 input-field">
+					<input type="number" id="age" name="age" min="17" max="100" placeholder="HOW OLD ARE YOU?">
+				</div>
+			</div>
+			<div class="row clearfix" style="padding:0px;">
+
+				<div class="col-sm-6 card-title">
+					PUSHUPS
+
+					<!--animated pushups-->
+					<div class="pushup-guy">
+					    <img class="pubody soldier" src="./img/pu-body.png">
+					    <img class="puupper-arm soldier" src="./img/pu-upper-arm.png">
+					    <img class="pulower-arm soldier" src="./img/pu-lower-arm.png">
+					</div>
+
+				</div>
+				<div class="col-sm-6 hidden-xs card-title">
+					SITUPS
+
+					<!--animated situps-->
+					<div class="situp-guy">
+					    <img class="suupper soldier" src="./img/su-upper.png">
+					    <img class="sulower soldier" src="./img/su-lower.png">
+					</div>
+				</div>
+				<div class="col-sm-6 input-field">
+					<input type="number" id="puCount" name="puCount" min="0" max="200" placeholder="NO. OF PUSHUPS?">
+				</div>
+				<div class="col-sm-6 visible-xs card-title vsxs1">
+					SITUPS
+
+					<!--animated situps-->
+					<div class="situp-guy">
+					    <img class="suupper soldier" src="./img/su-upper.png">
+					    <img class="sulower soldier" src="./img/su-lower.png">
+					</div>
+				</div>
+				<div class="col-sm-6 input-field">
+					<input type="number" id="suCount" name="suCount" min="0" max="200" placeholder="NO. OF SITUPS?">
+				</div>
+
+			</div>
+
+			<div class="row" style="padding:0px;">
+
+				<div class="col-sm-12 card-title">
+					2-MILE RUN
+
+					<!--animated running-->
+					<div class="run-guy">
+					    <img class="run-head soldier" src="./img/run-head.png">
+					    <img class="run-torso soldier" src="./img/run-torso.png">
+					    <img class="run-arm1 soldier" src="./img/run-arm.png">
+					    <img class="run-arm2 soldier" src="./img/run-arm.png">
+					    <img class="run-thigh1 soldier" src="./img/run-thigh.png">
+					    <img class="run-thigh2 soldier" src="./img/run-thigh.png">
+					    <img class="run-leg1 soldier" src="./img/run-calf.png">
+					    <img class="run-leg2 soldier" src="./img/run-calf.png">
+					</div>
+				</div>
+				<div class="col-xs-6 input-field">
+					<input class="runtime" type="number" name="minutes" min="0" max="60" placeholder="MINUTES">
+					<div class="colon">
+					:
+					</div>
+				</div>
+
+				<div class="col-xs-6 input-field">
+					<input class="runtime doubletime" type="number" name="seconds" min="0" max="59" placeholder="SECONDS">
+				</div>
+			</div>
+			<div class="row" style="padding:0px;">
+				<div class="input-field" style="height:100px;">
+					<input id="hooah" type="submit" name="grade-button" value="GRADE!">
+				</div>
+
+			</div>
+		</form>
+
+
+		<div id="scoreboard">
+	      <div id="gradeResults"></div>
+	      <div id="ifFail"></div>
+	      <div id="puScoreboard" class="event-result"></div>
+	      <div id="suScoreboard" class="event-result"></div>
+	      <div id="runScoreboard" class="event-result"></div>
+	    </div>
+
+	    <div id="fbsharer">
+	    	<a target="_blank" id="fbAlt" class="popupLink" href=""><i class="fa fa-facebook"></i> SHARE YOUR SCORE</a>
+	    </div>
+
+	    <form method="link" action="DAFORM/index.html" class="da-hidden">
+	    	<input type="hidden" class="ag" name="AGE" value="">
+	    	<input type="hidden" class="ge" name="GENDER" value="">
+			<input type="hidden" class="pc" name="PUCOUNT" value="">
+			<input type="hidden" class="ps" name="PUSCORE" value="">
+			<input type="hidden" class="sc" name="SUCOUNT" value="">
+			<input type="hidden" class="ss" name="SUSCORE" value="">
+			<input type="hidden" class="rtm" name="RUNMIN" value="">
+			<input type="hidden" class="rts" name="RUNSEC" value="">
+			<input type="hidden" class="rs" name="RUNSCORE" value="">
+			<input type="hidden" class="ts" name="TOTALSCORE" value="">
+
+			<button type="submit" name="" id="toDA"><i class="fa fa-file-text"></i> DAFORM</button>
+	    </form>
+
+	    <div class="row" id="footer">
+	    	<div class="container">
+				<p>Developed by <a href="http://jamespistell.com/" target="_blank">1LT James Pistell <i class="fa fa-linkedin-square"></i></a></p>
+				<p>&amp; <a href="http://josephfus.co/" target="_blank">Joseph Fusco <i class="fa fa-linkedin-square"></i></a></p>
+			</div>
+	    </div>
+	</div>
+	<img src="img/icon-male-selected.png" alt="" height="0" width="0">
+	<img src="img/icon-female-selected.png" alt="" height="0" width="0">
+
+
+
+
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="js/bootstrap.min.js"></script>-->
+<script type="text/javascript" src="js/calculator.js" ></script>
+<script type="text/javascript">
+$(document).ready(function (){
+    $("#hooah").click(function (){
+        $('html, body').animate({
+            scrollTop: $("#scoreboard").offset().top
+        }, 1000);
+    });
+});
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52709226-1', 'auto');
+  ga('send', 'pageview');
+
+
+$('#puCount').focus(function() {
+    $('.pubody').addClass('puexercise-body');
+    $('.puupper-arm').addClass('puexercise-upper-arm');
+    $('.pulower-arm').addClass('puexercise-lower-arm');
+}).blur(function() {
+    $('.pubody').removeClass('puexercise-body');
+    $('.puupper-arm').removeClass('puexercise-upper-arm');
+    $('.pulower-arm').removeClass('puexercise-lower-arm');
+});
+$('#suCount').focus(function() {
+    $('.suupper').addClass('suexercise-upper');
+}).blur(function() {
+    $('.suupper').removeClass('suexercise-upper');
+});
+$('.runtime').focus(function() {
+    $('.run-head').addClass('gohead');
+    $('.run-torso').addClass('gotorso');
+    $('.run-arm1').addClass('goarm1');
+    $('.run-arm2').addClass('goarm2');
+    $('.run-thigh1').addClass('gothigh1');
+    $('.run-thigh2').addClass('gothigh2');
+    $('.run-leg1').addClass('goleg1');
+    $('.run-leg2').addClass('goleg2');
+}).blur(function() {
+    $('.run-head').removeClass('gohead');
+    $('.run-torso').removeClass('gotorso');
+    $('.run-arm1').removeClass('goarm1');
+    $('.run-arm2').removeClass('goarm2');
+    $('.run-thigh1').removeClass('gothigh1');
+    $('.run-thigh2').removeClass('gothigh2');
+    $('.run-leg1').removeClass('goleg1');
+    $('.run-leg2').removeClass('goleg2');
+});
+$('.doubletime').focus(function() {
+    $('.run-guy').addClass('gorun');
+}).blur(function() {
+    $('.run-guy').removeClass('gorun');
+});
+
+</script>
+<!-- this is a test comment -->
+<!-- test comment 2 -->
+</body>
+</html>
